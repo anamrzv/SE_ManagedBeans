@@ -1,12 +1,16 @@
 import beans.Point;
 import org.junit.Test;
+import org.junit.jupiter.api.Timeout;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PointInEnteredTest {
 
     @Test
-    public void checkZeroEntered(){
+    public void checkZeroEntered() {
         assertTrue(true);
     }
 
@@ -18,7 +22,7 @@ public class PointInEnteredTest {
                 () -> assertEquals(1.0f, empty.getrValue()),
                 () -> assertEquals(0d, empty.getxCoordinate()),
                 () -> assertEquals(0d, empty.getyCoordinate()),
-                () -> assertEquals(null, empty.getResult())
+                () -> assertNull(empty.getResult())
         );
     }
 
@@ -48,14 +52,20 @@ public class PointInEnteredTest {
         );
     }
 
-    @Test
+    @Test(timeout = 100)
     public void checkArea_db() {
         Point p = new Point();
         p.setxCoordinate(-1);
         p.setyCoordinate(1);
         p.setrValue(2);
         p.checkPoint();
-        assertEquals( p.getPoints().size(), 1, "Dot wasn't added to list properly");
+        assertEquals(p.getPoints().size(), 1, "Dot wasn't added to list properly");
     }
 
+    @Test
+    @Timeout(value = 100, unit= TimeUnit.DAYS)
+    public void testFailWithTimeout() throws InterruptedException {
+        Point p = new Point();
+        assertTimeout(Duration.ofMillis(100), () -> p.checkPoint());
+    }
 }

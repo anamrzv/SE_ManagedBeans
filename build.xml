@@ -28,10 +28,6 @@
         <ivy:cachepath pathid="test.dependencies" conf="test"/>
     </target>
 
-    <target name="retrive" depends="resolve" description="Use ivy to resolve classpaths">
-        <ivy:retrieve sync="true" type="jar" pattern="${lib.dir}/[conf]/[artifact].[ext]"/>
-    </target>
-
     <!--    need to add ant-contrib-1.0b3.jar to ${ANT_HOME}/lib to make it work-->
     <taskdef resource="net/sf/antcontrib/antlib.xml">
         <classpath>
@@ -45,7 +41,7 @@
         <echo>Cleaning succeeded:)</echo>
     </target>
 
-    <target name="compile" depends="clean, retrive">
+    <target name="compile" depends="clean, resolve">
         <echo>Compilation in process...</echo>
         <mkdir dir="${main.compiled}"/>
         <javac srcdir="${src.main}" destdir="${main.compiled}" includeantruntime="false">
