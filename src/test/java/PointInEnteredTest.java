@@ -52,7 +52,7 @@ public class PointInEnteredTest {
         );
     }
 
-    @Test(timeout = 100)
+    @Test
     public void checkArea_db() {
         Point p = new Point();
         p.setxCoordinate(-1);
@@ -66,6 +66,6 @@ public class PointInEnteredTest {
     @Timeout(value = 100, unit= TimeUnit.DAYS)
     public void testFailWithTimeout() throws InterruptedException {
         Point p = new Point();
-        assertTimeout(Duration.ofMillis(100), () -> p.checkPoint());
+        assertTimeout(Duration.ofDays(10), () -> p.checkPoint());
     }
 }

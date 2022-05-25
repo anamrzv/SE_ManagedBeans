@@ -4,4 +4,9 @@ ant
 build
 ivy-cache
 lib
-src/main/resources/META-INF/persistence.xml
+#src/main/resources/META-INF/persistence.xml
+sounds
+ant-junit-1.8.4.jar
+ivy.xml
+ivysettings.xml
+

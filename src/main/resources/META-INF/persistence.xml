@@ -12,7 +12,7 @@
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5638/studs"/>
             <property name="javax.persistence.jdbc.user" value="s312615"/>
-            <property name="javax.persistence.jdbc.password" value="gib643"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
 
             <property name="eclipselink.logging.level" value="INFO"/>
             <property name="eclipselink.logging.level.sql" value="FINE"/>

@@ -19,8 +19,7 @@ public class Point {
     private LocalDateTime time;
 
     private LinkedList<PointEntity> points = new LinkedList<>();
-    //private PointInsertRepository insertRepository = new PointInsertRepository(); //temporary:)
-
+    private PointInsertRepository insertRepository = new PointInsertRepository();
     public Point() {
 
     }
@@ -79,7 +78,7 @@ public class Point {
         pointDB.setR(this.rValue);
         if (isInFigure) pointDB.setResult("Попадание");
         else pointDB.setResult("Промах");
-        //insertRepository.insertPoint(pointDB); //temporary:)
+        insertRepository.insertPoint(pointDB);
         points.add(pointDB);
     }
 

@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.Serializable;
+import java.util.List;
 
 public class PointInsertRepository implements Serializable {
 
@@ -21,5 +22,21 @@ public class PointInsertRepository implements Serializable {
                 .executeUpdate();
         entityManager.getTransaction().commit();
         return true;
+    }
+
+    public List<PointEntity> getAllPoints() {
+        return (List<PointEntity>) entityManager.createQuery("SELECT p from PointEntity p").getResultList();
+    }
+
+    public List<PointEntity> getFailedPoints() {
+        return (List<PointEntity>) entityManager.createQuery("SELECT p from PointEntity p WHERE p.result LIKE :failure")
+                .setParameter("failure", "Промах")
+                .getResultList();
+    }
+
+    public List<PointEntity> getLastPoints(int number) {
+        return entityManager.createQuery("SELECT p from PointEntity p order by p.time desc")
+                .setFirstResult(0).setMaxResults(number)
+                .getResultList();
     }
 }
