@@ -1,9 +1,7 @@
-package beans;
+package mbeans;
 
 import db.PointEntity;
 import db.PointInsertRepository;
-import mbeans.AreaMBean;
-import mbeans.MBeanSessionLocalAgent;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -14,7 +12,7 @@ import java.util.List;
 
 @ManagedBean
 @ApplicationScoped
-public class AreaBean implements Serializable, AreaMBean {
+public class Area implements Serializable, AreaMBean {
 
     private final PointInsertRepository insertRepository = new PointInsertRepository();
 
@@ -25,7 +23,7 @@ public class AreaBean implements Serializable, AreaMBean {
         if (!points.isEmpty()) {
             r = points.get(0).getR();
         }
-        return r * r + Math.pow(r / 2, 2) / 2 + (Math.PI * Math.pow(r / 2, 2) / 4);
+        return (r * r + Math.pow(r / 2, 2) / 2 + (Math.PI * Math.pow(r / 2, 2) / 4));
     }
 
     @PostConstruct

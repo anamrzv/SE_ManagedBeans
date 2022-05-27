@@ -1,9 +1,7 @@
-package beans;
+package mbeans;
 
 import db.PointEntity;
 import db.PointInsertRepository;
-import mbeans.CountMBean;
-import mbeans.MBeanSessionLocalAgent;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -18,20 +16,10 @@ import java.util.List;
 
 @ManagedBean
 @ApplicationScoped
-public class CountBean extends NotificationBroadcasterSupport implements Serializable, CountMBean {
+public class Count extends NotificationBroadcasterSupport implements Serializable, CountMBean {
 
     private final PointInsertRepository insertRepository = new PointInsertRepository();
     private long sequenceNumber = 0;
-
-    @PostConstruct
-    public void init() {
-        MBeanSessionLocalAgent.registerMBean(this, "CountBeanName");
-    }
-
-    @PreDestroy
-    public void preDestroy() {
-        MBeanSessionLocalAgent.unregisterMBean(this, "CountBeanName");
-    }
 
     @Override
     public long getAllPointsNumber() {
@@ -63,5 +51,15 @@ public class CountBean extends NotificationBroadcasterSupport implements Seriali
         String description = "Три промаха подряд";
         MBeanNotificationInfo info = new MBeanNotificationInfo(types, name, description);
         return new MBeanNotificationInfo[]{info};
+    }
+
+    @PostConstruct
+    public void init() {
+        MBeanSessionLocalAgent.registerMBean(this, "CountBeanName");
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        MBeanSessionLocalAgent.unregisterMBean(this, "CountBeanName");
     }
 }

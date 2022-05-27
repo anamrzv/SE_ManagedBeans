@@ -62,27 +62,36 @@
 
                             <p>Выберите Y (-5;5):</p>
                             <div>
-                                <pf:inputText placeholder="(-5;5)" id="y" value="#{point.yCoordinate}" required="true" maxlength="11" type="text" label="Y"/>
+                                <pf:inputText placeholder="(-5;5)" id="y" value="#{point.yCoordinate}" required="true"
+                                              maxlength="11" type="text" label="Y"/>
                             </div>
 
                             <p>Выберите R:</p>
                             <div>
                                 <h:outputText id="output"/>
                                 <h:inputHidden id="rVal" value="#{point.rValue}"/>
-                                <pf:slider for="rVal" step="0.25" minValue="1" maxValue="4" display="output" style="width: 200px" displayTemplate="R= {value}"/>
+                                <pf:slider for="rVal" step="0.25" minValue="1" maxValue="4" display="output"
+                                           style="width: 200px" displayTemplate="R= {value}"/>
                             </div>
 
                             <div class="buttons-area">
-                                <h:commandButton id="function-btn" class="gradient-button" value="Отправить" onclick="validate()" action="#{point.checkPoint}"/>
+                                <h:commandButton id="function-btn" class="gradient-button" value="Отправить"
+                                                 onclick="validate()" action="#{point.checkPoint}"/>
                             </div>
                         </div>
                     </h:form>
-                    <p>Число попыток:</p>
-                    <h:outputText value="#{countBean.allPointsNumber}"/>
-                    <p>Число промахов:</p>
-                    <h:outputText value="#{countBean.failedPointsNumber}"/>
-                    <p>Площадь фигуры:</p>
-                    <h:outputText value="#{areaBean.areaSize}"/>
+                </div>
+
+                <div class="output">
+                    <p>Число попыток:
+                        <h:outputText value="#{count.allPointsNumber}"/>
+                    </p>
+                    <p>Промахи:
+                        <h:outputText value="#{count.failedPointsNumber}"/>
+                    </p>
+                    <p>Площадь фигуры:
+                        <h:outputText value="#{area.areaSize}"/>
+                    </p>
                 </div>
 
             </th>
